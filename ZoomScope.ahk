@@ -1,7 +1,7 @@
 ;F6 - Red Dot (On/Off)
 ;F9 - Zoom Scope (On/Off)
 ;Ctrl+Shift+MouseWheel - Zoom (In/Out)
-;Esc - 1 sec (Reload), 3 sec (Exit) 
+;Esc - Hold 1 sec (Reload), 3 sec (Exit) 
 
 #SingleInstance, Force
 #Persistent
