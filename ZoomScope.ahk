@@ -3,6 +3,7 @@
 ;Ctrl+Shift+MouseWheel - Zoom (In/Out)
 ;Esc - Hold 1 sec (Reload), 3 sec (Exit) 
 
+
 #SingleInstance, Force
 #Persistent
 
