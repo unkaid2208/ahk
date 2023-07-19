@@ -1,4 +1,8 @@
-﻿#SingleInstance, Force
+;F10 - Start/Stop
+;F10 - Hold 1 sec (Reload), 3 sec (Exit) 
+
+
+#SingleInstance, Force
 #Persistent
 #MaxThreadsPerHotkey 2
 
