@@ -109,6 +109,7 @@ If ErrorLevel
     DllCall("gdi32.dll\DeleteDC", UInt,hdc_frame )
     DllCall("gdi32.dll\DeleteDC", UInt,hdd_frame )
     DllCall("gdi32.dll\DeleteDC", UInt,hdc_buffer)
+    ExitApp
   }
   SoundBeep, 600, 80
   Reload
