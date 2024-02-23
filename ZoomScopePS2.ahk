@@ -1,8 +1,9 @@
-﻿;F6 - Red Dot (On/Off)
+;Red dot is a common crosshair for all games
+;Green dot is the gunner's third-person crosshair in PlanetSide 2 (ballistic ammo/missiles)
+;F6 - Dot Sight (On/Off)
 ;F9 - Zoom Scope (On/Off)
 ;Ctrl+Shift+MouseWheel - Zoom (In/Out)
 ;Esc - Hold 1 sec (Reload), 3 sec (Exit)
-
 
 #SingleInstance, Force
 #Persistent
@@ -61,6 +62,7 @@ If StateX:=!StateX
   Gui crosshair1: Show, AutoSize x%ZeroX% y%ZeroY% NoActivate, Crosshair1
   Gui crosshair2: Show, AutoSize x%ZeroX% y%ZeroY2% NoActivate, Crosshair2
   Gui crosshair1: +E0x80020
+  Gui crosshair2: +E0x80020
 }
 Else
 {
