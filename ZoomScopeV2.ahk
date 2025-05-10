@@ -1,7 +1,6 @@
 ;Ctrl+Shift+Alt - Toggle Red Dot / Zoom Scope (Cycle On/Off)
 ;Ctrl+Shift+MouseWheel - Zoom (In/Out)
-;Esc - Hold 1 sec (Reload), 3 sec (Exit) 
-
+;Esc - 3 sec (Exit) 
 
 #SingleInstance, Force
 #Persistent
@@ -24,6 +23,12 @@ If Not (A_IsAdmin or RegExMatch(full_command_line, " /restart(?!\S)"))
   }
   ExitApp
 }
+
+AppName := % RegExReplace(A_ScriptName, "(.\w*$)")
+Menu, Tray, NoStandard
+Menu, Tray, Tip, %AppName%
+Menu, Tray, Add, Help, HelpSub
+Menu, Tray, Add, Exit, ExitSub
 
 Zoom = 2
 Rx = 256
@@ -101,23 +106,33 @@ Else
 Return
 
 *~$Escape::
-;esc 1 sec = reload, esc 3 sec = exit
-KeyWait, Escape, T0.8
+;Esc 3 sec = exit
+KeyWait, Escape, T2.8
 If ErrorLevel
 {
-  KeyWait, Escape, T2.8
-  If ErrorLevel
-  {
-    SoundBeep, 600, 80
-    SoundBeep, 400, 80
-    SoundBeep, 350, 80
-    DllCall("gdi32.dll\DeleteObject", UInt,hbm_buffer)
-    DllCall("gdi32.dll\DeleteDC", UInt,hdc_frame )
-    DllCall("gdi32.dll\DeleteDC", UInt,hdd_frame )
-    DllCall("gdi32.dll\DeleteDC", UInt,hdc_buffer)
-    ExitApp
-  }
-  SoundBeep, 600, 80
-  Reload
+  GoSub, ExitSub
 }
 Return
+
+HelpSub:
+ToolTip,
+(
+Ctrl+Shift+Alt - Toggle Red Dot / Zoom Scope (Cycle On/Off)
+Ctrl+Shift+MouseWheel - Zoom (In/Out)
+Esc - 3 sec to exit (press and hold)
+)
+Sleep, 5000
+ToolTip,
+Return
+
+ExitSub:
+{
+  SoundBeep, 600, 80
+  SoundBeep, 400, 80
+  SoundBeep, 350, 80
+  DllCall("gdi32.dll\DeleteObject", UInt,hbm_buffer)
+  DllCall("gdi32.dll\DeleteDC", UInt,hdc_frame )
+  DllCall("gdi32.dll\DeleteDC", UInt,hdd_frame )
+  DllCall("gdi32.dll\DeleteDC", UInt,hdc_buffer)
+  ExitApp
+}
